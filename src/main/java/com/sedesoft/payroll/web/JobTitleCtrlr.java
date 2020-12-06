@@ -18,7 +18,7 @@ import com.sedesoft.payroll.model.JobTitle;
 import com.sedesoft.payroll.repository.JobTitleRepo;
 
 @Controller
-@RequestMapping("/employee/job-title")
+@RequestMapping("/employee/jobtitle")
 public class JobTitleCtrlr {
 	
 	@Autowired
@@ -45,7 +45,7 @@ public class JobTitleCtrlr {
 	
 	@GetMapping("/select/{id}")
 	public String select(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("job-title", jobTitleRepo.findById(id));
+		model.addAttribute("jobtitle", jobTitleRepo.findById(id));
 		model.addAttribute("records", jobTitleRepo.findAll());
 		model.addAttribute("selected", "true");
 		return "/employee/job-titles";
@@ -54,27 +54,27 @@ public class JobTitleCtrlr {
 	@GetMapping("/insert")
 	public String insert(@ModelAttribute("jobtitle") JobTitle jobTitle, BindingResult result, Model model) {
 		if(result.hasErrors())
-			return "/employee/job-title";
+			return "/employee/job-titles";
 		Optional<JobTitle> op = jobTitleRepo.findAll().stream().filter(x->x.getId().equals(jobTitle.getId())).findFirst();
 		if(op.isPresent())
-			return "redirect:/employee/job-title?fail";
+			return "redirect:/employee/jobtitle?fail";
 		jobTitleRepo.save(turnToUpperCase(jobTitle));
-		return "redirect:/employee/job-titles";
+		return "redirect:/employee/jobtitle";
 	}
 	
 	@GetMapping("/update")
 	public String update(@ModelAttribute("jobtitle") JobTitle JobTitle, BindingResult result, Model model) {
 		if(result.hasErrors())
-			return "/employee/Job-titles";
+			return "/employee/job-titles";
 		jobTitleRepo.save(turnToUpperCase(JobTitle));
-		return "redirect:/employee/job-titles";
+		return "redirect:/employee/jobtitle";
 		
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id) {
 		jobTitleRepo.deleteById(id);
-		return "redirect:/employee/job-titles";
+		return "redirect:/employee/jobtitle";
 	}
 	
 	/*

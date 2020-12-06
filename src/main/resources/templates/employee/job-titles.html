@@ -29,7 +29,7 @@
 	<!-- HACE LA BUSQUEDA -->
 	<div class="container container-fluid">
 		<form
-			th:action="${selected}=='true'?@{/employee/job-title/update}:@{@{/employee/job-title/insert}}"
+			th:action="${selected}=='true'?@{/employee/jobtitle/update}:@{@{/employee/jobtitle/insert}}"
 			th:model="${jobtitle}" method="get">
 			<div class="row">
 				<div class="col-2"></div>
@@ -150,7 +150,7 @@
 							<td th:text="${lst.status}"></td>
 							<td><a
 								class="btn btn-sm btn-success text-white form-control"
-								th:href="@{/employee/job-title/select/{id}(id=${lst.id})}"
+								th:href="@{/employee/jobtitle/select/{id}(id=${lst.id})}"
 								style="border-radius: 16px;"><i class="far fa-hand-pointer"></i>Elige</a></td>
 
 
@@ -179,7 +179,7 @@
 											<!-- PIE DE MODAL-->
 											<div class="modal-footer">
 												<a
-													th:href="@{/employee/job-title/delete/{id}(id=${lst.id})}"
+													th:href="@{/employee/jobtitle/delete/{id}(id=${lst.id})}"
 													onclick="waitingDialog.show('Se esta eliminando el registro')">
 													<span class="btn btn-danger">S&iacute;, quiero
 														eliminar</span>

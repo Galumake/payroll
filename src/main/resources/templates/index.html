@@ -45,7 +45,11 @@
 				class="btn btn-secondary form-group">SEDE</a>
 		</div>
 		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
-			<a th:href="@{/employee/job-title}"
+			<a th:href="@{/employee/jobtitle}"
+				class="btn btn-secondary form-group">PUESTO</a>
+		</div>
+		<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+			<a th:href="@{/employee/jobtitle}"
 				class="btn btn-secondary form-group">PUESTO</a>
 		</div>
 
