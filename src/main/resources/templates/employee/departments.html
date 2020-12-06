@@ -7,14 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <script src="https://kit.fontawesome.com/22f52d91d6.js"></script>
-<title>Sedes</title>
+<title>Departamento</title>
 </head>
 <body>
 	<!-- NAVBAR -->
 	<nav class="container-fluid bg-primary sticky-top">
 
 		<div class="row">
-			<div class="col-6 display-4 text-white">Sedes</div>
+			<div class="col-6 display-4 text-white">Departamento</div>
 			<div class="col-5 d-flex p-3 flex-row-reverse ">
 				&nbsp;&nbsp;<a><img th:src="@{/img/icon/cancel_white_18dp.png}"
 					title="Salir" data-toggle="tooltip" data-placement="bottom"
@@ -29,8 +29,8 @@
 	<!-- HACE LA BUSQUEDA -->
 	<div class="container container-fluid">
 		<form
-			th:action="${selected}=='true'?@{/employee/headquarters/update}:@{@{/employee/headquarters/insert}}"
-			th:model="${headquarter}" method="get">
+			th:action="${selected}=='true'?@{/employee/department/update}:@{@{/employee/department/insert}}"
+			th:model="${department}" method="get">
 			<div class="row">
 				<div class="col-2"></div>
 				<div class="col-8">
@@ -38,17 +38,17 @@
 						<div class="col-2">
 							<input class="form-control" type="text" id="id"
 								placeholder="Codigo" readonly="readonly"
-								th:field="${headquarter.id}">
+								th:field="${department.id}">
 						</div>
 
 						<div class="col-4">
 							<input class="form-control" type="text" id="descripcion"
 								placeholder="Descripcion " autofocus="autofocus"
-								th:field="${headquarter.name}">
+								th:field="${department.name}">
 						</div>
 						<div class="col-2">
 							<select id="orden" class="form-control"
-								th:field="${headquarter.status}">
+								th:field="${department.status}">
 								<option th:value="activo">activo</option>
 								<option th:value="inactivo">inactivo</option>
 							</select>
@@ -150,7 +150,7 @@
 							<td th:text="${lst.status}"></td>
 							<td><a
 								class="btn btn-sm btn-success text-white form-control"
-								th:href="@{/employee/headquarters/select/{id}(id=${lst.id})}"
+								th:href="@{/employee/department/select/{id}(id=${lst.id})}"
 								style="border-radius: 16px;"><i class="far fa-hand-pointer"></i>Elige</a></td>
 
 
@@ -179,7 +179,7 @@
 											<!-- PIE DE MODAL-->
 											<div class="modal-footer">
 												<a
-													th:href="@{/employee/headquarters/delete/{id}(id=${lst.id})}"
+													th:href="@{/employee/department/delete/{id}(id=${lst.id})}"
 													onclick="waitingDialog.show('Se esta eliminando el registro')">
 													<span class="btn btn-danger">S&iacute;, quiero
 														eliminar</span>
