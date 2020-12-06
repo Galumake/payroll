@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<script src="https://kit.fontawesome.com/22f52d91d6.js"></script>
+<title>Puestos</title>
+</head>
+<body>
+	<!-- NAVBAR -->
+	<nav class="container-fluid bg-primary sticky-top">
+
+		<div class="row">
+			<div class="col-6 display-4 text-white">Puestos</div>
+			<div class="col-5 d-flex p-3 flex-row-reverse ">
+				&nbsp;&nbsp;<a><img th:src="@{/img/icon/cancel_white_18dp.png}"
+					title="Salir" data-toggle="tooltip" data-placement="bottom"
+					th:onclick="|window.location.href='@{/}'|"></a>
+			</div>
+			<div class="col-1"></div>
+		</div>
+
+	</nav>
+	<br>
+
+	<!-- HACE LA BUSQUEDA -->
+	<div class="container container-fluid">
+		<form
+			th:action="${selected}=='true'?@{/employee/job-title/update}:@{@{/employee/job-title/insert}}"
+			th:model="${jobtitle}" method="get">
+			<div class="row">
+				<div class="col-2"></div>
+				<div class="col-8">
+					<div class="form-row align-items-center">
+						<div class="col-2">
+							<input class="form-control" type="text" id="id"
+								placeholder="Codigo" readonly="readonly"
+								th:field="${jobtitle.id}">
+						</div>
+
+						<div class="col-4">
+							<input class="form-control" type="text" id="descripcion"
+								placeholder="Descripcion " autofocus="autofocus"
+								th:field="${jobtitle.name}">
+						</div>
+						<div class="col-2">
+							<select id="orden" class="form-control"
+								th:field="${jobtitle.status}">
+								<option th:value="activo">activo</option>
+								<option th:value="inactivo">inactivo</option>
+							</select>
+						</div>
+						<div class="col-3">
+							<input type="Submit" class="form-control btn-success btn-sm"
+								th:value="${selected}=='true'?'Actualizar':'Salvar'"
+								style="border-radius: 16px;">
+						</div>
+					</div>
+					<!-- HANLING ERRORS -->
+					<div class="row mt-2">
+						<div th:if="${param.fail}" class="mt-2">
+							<div
+								class="alert alert-danger alert-dismissible fade show form-control py-2"
+								role="alert">
+								<p class="text-danger">
+									<strong>Atencion! </strong> Pareciera que se ha digitado un
+									c&oacute;digo que ya existe.
+								</p>
+
+								<button type="button" class="close py-2" data-dismiss="alert"
+									aria-label="close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</div>
+						<div th:if="${param.er1}" class="col-12 mt-2">
+							<div
+								class="alert alert-danger alert-dismissible fade show form-control py-2"
+								role="alert">
+								<p class="text-danger ">
+									<strong>Atenci&oacute;n: </strong> No se pudo eliminar, hay
+									registros que dependen de el!
+								</p>
+								<button type="button" class="close py-2" data-dismiss="alert"
+									aria-label="close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</div>
+
+						<!--  
+						<div class="col-12 mt-2"
+							th:if="${#fields.hasErrors('area.id')==true}">
+							<div
+								class="alert alert-danger alert-dismissible fade show form-control py-2"
+								role="alert">
+								<p class="error-message text-danger  font-weight-bold"
+									th:each="err : ${#fields.errors('area.id')}" th:text="${err}"></p>
+								<button type="button" class="close py-2" data-dismiss="alert"
+									aria-label="close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</div>
+						<div class="col-12 mt-2"
+							th:if="${#fields.hasErrors('area.nombre')==true}">
+							<div
+								class="alert alert-danger alert-dismissible fade show form-control py-2"
+								role="alert">
+								<p class="error-message text-danger  font-weight-bold"
+									th:each="err : ${#fields.errors('area.nombre')}"
+									th:text="${err}"></p>
+								<button type="button" class="close py-2" data-dismiss="alert"
+									aria-label="close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						</div>
+						-->
+					</div>
+				</div>
+				<div class="col-2"></div>
+			</div>
+		</form>
+
+	</div>
+	<br>
+	<!-- TABLA -->
+	<div class="container container-fluid">
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<table class="table table-striped table-hover table-sm">
+					<thead class="bg-primary text-light">
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Estado</th>
+							<th>
+							<th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="lst:${records}">
+							<td th:text="${lst.id}"></td>
+							<td th:text="${lst.name}"></td>
+							<td th:text="${lst.status}"></td>
+							<td><a
+								class="btn btn-sm btn-success text-white form-control"
+								th:href="@{/employee/job-title/select/{id}(id=${lst.id})}"
+								style="border-radius: 16px;"><i class="far fa-hand-pointer"></i>Elige</a></td>
+
+
+							<td th:if="${not #lists.isEmpty(lst.id)}"><a
+								class=" btn btn-sm btn-danger text-white form-control"
+								title="eliminar" data-toggle="modal"
+								th:attr="data-target='#modal-delete'+${lst.id}"
+								style="border-radius: 16px;"> <i class="far fa-trash-alt"></i>
+									Elimina
+							</a> <!-- modal start -->
+								<div class="modal" th:id="modal-delete+${lst.id}">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<!-- CABECERA-->
+											<div class="modal-header">
+												<H5 class="modal-title">Elimina Registro</H5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">x</button>
+											</div>
+											<!-- CUERPO-->
+											<div class="modal-body">
+												<p class="error-text">
+													<strong>¿Seguro que desea Eliminar?</strong>
+												</p>
+											</div>
+											<!-- PIE DE MODAL-->
+											<div class="modal-footer">
+												<a
+													th:href="@{/employee/job-title/delete/{id}(id=${lst.id})}"
+													onclick="waitingDialog.show('Se esta eliminando el registro')">
+													<span class="btn btn-danger">S&iacute;, quiero
+														eliminar</span>
+												</a>
+												<button class="btn btn-primary " data-dismiss="modal"
+													aria-hidden="true">Cancelar</button>
+											</div>
+										</div>
+									</div>
+								</div> <!-- modal end --></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-2"></div>
+		</div>
+	</div>
+	<!-- JAVASCRIPT -->
+	<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/util/tooltip.js}"></script>
+	<script th:src="@{/js/util/modal-spinner.js}"></script>
+
+
+</body>
+</html>
