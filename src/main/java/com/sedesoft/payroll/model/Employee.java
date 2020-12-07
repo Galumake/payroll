@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,7 +38,9 @@ public class Employee {
 	private String agreement_end_date;
 	private String headquarters;
 	private String job_title;
-	private String department;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
 	private String payment_period;
 	private String payment_method;
 	private String currency;
@@ -253,11 +257,11 @@ public class Employee {
 		this.job_title = job_title;
 	}
 
-	public String getDepartment() {
+	public Department getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(String department) {
+	public void setDepartment(Department department) {
 		this.department = department;
 	}
 
@@ -433,6 +437,7 @@ public class Employee {
 				+ ", security_contribution_amount=" + security_contribution_amount + ", net_salary=" + net_salary
 				+ ", gross_salary=" + gross_salary + "]";
 	}
+
 
 	
 		

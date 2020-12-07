@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-
 <title>Registro Empleados</title>
-
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/bootstrap.min.css}" />
 <!-- datepicker -->
@@ -17,33 +14,26 @@
 	rel="stylesheet">
 </head>
 <!-- FONT OWESOME -->
-
 <body>
-
 	<!-- NAVBAR -->
 	<nav class="container-fluid bg-primary sticky-top">
-
 		<div class="row">
 			<div class="col-6 display-4 text-white">Registro Empleados</div>
 			<div class="col-5 d-flex p-3 flex-row-reverse ">
-				<a><img src="/resources/img/button/home_white_18dp.png"
+				<a><img th:src="@{/img/icon/cancel_white_18dp.png}"
 					title="Ir a Menu" onclick="location.href='/'"></a><i
 					class="far fa-save"></i>
 			</div>
-			<div class="col-1">
-
-			</div>
-			
-	
+			<div class="col-1"></div>
 		</div>
 	</nav>
-
+	<!-- 
 	<h1>NOMBRE</h1>
 	<h1>
 		<span sec:authentication="name">Username</span>
 	</h1>
+	 -->
 	<div class="container-fluid m-4">
-
 		<form action="#">
 			<div class="row">
 				<div class="col-1"></div>
@@ -54,7 +44,7 @@
 							<div class="form-row align-items-center">
 								<div class="col-6">
 									<input class="form-control"
-										placeholder="Consultar persona por cedula, nombre � apellidos" />
+										placeholder="Consultar persona por cédula, nombre y apellidos" />
 								</div>
 								<div class="col-2">
 									<input type="submit" class="form-control btn-primary"
@@ -62,12 +52,9 @@
 								</div>
 							</div>
 							<br>
-
-
 							<div class="row">
 								<div class="col-12">
 									<table class="table table-striped table-hover table-sm">
-
 										<thead class="thead-ligth">
 											<tr>
 												<th scope="col">CEDULA</th>
@@ -89,7 +76,6 @@
 											</tr>
 										</tbody>
 									</table>
-
 								</div>
 							</div>
 						</div>
@@ -98,34 +84,25 @@
 				<div class="col-1"></div>
 			</div>
 		</form>
-
 	</div>
-
 	<!-- FORMULARIO -->
 	<div class="container-fluid m-4">
-
 		<form action="/config/person/employee/save" method="get">
-
 			<div class="row">
 				<div class="col-1"></div>
-
 				<div class="col-10">
-
 					<div class="card border-success  mb-3">
 						<h5 class="card-header ">Datos Personales</h5>
 						<div class="card-body text-dark">
 							<div class="form-row align-items-center">
-
 								<div class="col-2">
-									<label for="cedula">Cedula</label> <input type="text"
+									<label for="cedula">C&eacute;dula</label> <input type="text"
 										class="form-control" id="cedula"></input>
 								</div>
-
 								<div class="col-3 ">
 									<label for="nombre">Nombre</label> <input type="text"
 										class="form-control" id="nombre"></input>
 								</div>
-
 								<div class="col-3 ">
 									<label for="apellido">Apellido</label> <input type="text"
 										class="form-control" id="apellido"></input>
@@ -134,7 +111,6 @@
 									<label for="apellido2">Segundo Apellido</label> <input
 										type="text" class="form-control" id="apellido2"></input>
 								</div>
-
 							</div>
 							<br>
 							<div class="form-row align-items-center">
@@ -143,66 +119,51 @@
 										id="nacimiento" type="text"
 										class="form-control date defaultDate"></input>
 								</div>
-
 								<div class="col-2">
-									<label for="genero">Genero:</label> <select id="genero"
+									<label for="genero">G&eacute;nero:</label> <select id="genero"
 										class="form-control">
-										<option value="maculino">masculino</option>
-										<option value="femenino">femenino</option>
+										<option value="MASCULINO">MASCULINO</option>
+										<option value="FEMENINO">FEMENINO</option>
 									</select>
 								</div>
-
 								<div class="col-2">
 									<label for="estado_civil">Estado Civil:</label> <select
 										id="estado_civil" class="form-control">
-										<option value="soltero(a)">soltero(a)</option>
-										<option value="casado(a)">casado(a)</option>
-										<option value="divorciado(a)">divorciado(a)</option>
-										<option value="union_libre">union libre</option>
+										<option value="SOLTERO(A)">SOLTERO(A)</option>
+										<option value="CASADO(A)">CASADO(A)</option>
+										<option value="DIVORCIADO(A)">DIVORCIADO(A)</option>
+										<option value="UNION_LIBRE">UNION LIBRE</option>
 									</select>
 								</div>
-
 								<div class="col-2">
 									<label for="nacionalidad">Nacionalidad:</label> <select
 										id="nacionalidad" class="form-control">
 
 									</select>
 								</div>
-
 								<div class="col-1">
 									<label for="edad">Edad</label> <input type="number"
 										class="form-control" id="edad" name="points" step="1" min="15"
 										max="70"></input>
 								</div>
-
 								<div class="col-2">
-									<label for="educacion">Educacion:</label> <select
+									<label for="educacion">Educaci&oacute;n:</label> <select
 										id="educacion" class="form-control">
-										<option value="primaria incompleta">primaria
-											incompleta</option>
-										<option value="primaria completa">primaria completa</option>
-										<option value="secundaria incompleta">secundaria
-											incompleta</option>
-										<option value="secundaria completa">secundaria
-											completa</option>
-										<option value="pregrado">pregradao</option>
-										<option value="universitaria">universitaria</option>
-										<option value="pregrado">postgrado</option>
-
+										<option value="PRIMARIA_COMPLETA">PRIMARIA COMPLETA</option>
+										<option value="PRIMARIA_COMPLETA">PRIMARIA COMPLETA</option>
+										<option value="SECUNDARIA_INCOMPLETA">SECUNDARIA INCOMPLETA</option>
+										<option value="SECUNDARIA_COMPLETA">SECUNDARIA COMPLETA</option>
+										<option value="PREGRADO">PREGRADO</option>
+										<option value="UNIVERSITARIO">UNIVERSITARIO(A)</option>
+										<option value="POST_GRADO">POSTGRADO</option>
 									</select>
 								</div>
-
 							</div>
-
-
 						</div>
 					</div>
-
-
 				</div>
 				<div class="col-1"></div>
 			</div>
-
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
@@ -222,9 +183,9 @@
 								</div>
 
 								<div class="col-2">
-									<label for="telefonoHabitacion">tel�fono</label> <input
+									<label for="telefonoHabitacion">tel&eacute;fono</label> <input
 										type="text" class="form-control" id="telefonoHabitacion"
-										placeholder="tel�fono habitaci�n"></input>
+										placeholder="teléfono habitación"></input>
 								</div>
 
 								<div class="col-3">
@@ -233,30 +194,23 @@
 								</div>
 
 								<div class="col-2">
-									<label for="telefonoContacto">tel�fono Contacto</label> <input
+									<label for="telefonoContacto">tel&eacute;fono Contacto</label> <input
 										type="text" class="form-control" id="telefonoContacto"></input>
 								</div>
-
 							</div>
-
 							<br>
-
 							<div class="form-row align-items-center">
-
 								<div class="col-12">
-									<label for="direccion">Direccion</label>
+									<label for="direccion">Direcci&oacute;n</label>
 									<textarea class="form-control" id="direccion" rows="2"
 										cols="15"></textarea>
 								</div>
 							</div>
-
 						</div>
-
 					</div>
 				</div>
 				<div class="col-1"></div>
 			</div>
-
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
@@ -268,11 +222,8 @@
 									<label for="padecimientos">Padecimientos</label>
 									<textarea class="form-control" id="padecimientos" rows="2"
 										cols="15"
-										placeholder="Alg�n padesismiento que se deba conocer del colaborador"></textarea>
+										placeholder="Algún padecimiento que se deba conocer del colaborador"></textarea>
 								</div>
-
-
-
 							</div>
 							<br>
 							<div class="form-row align-items-center">
@@ -280,17 +231,15 @@
 									<label for="observacion">Observaciones</label>
 									<textarea class="form-control" id="obsdervacion" rows="2"
 										cols="15"
-										placeholder="Alg�n dato adicional que se deba conocer del colaborador">
+										placeholder="Algún dato adicional que se deba conocer del colaborador">
 									</textarea>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 				<div class="col-1"></div>
 			</div>
-
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
@@ -298,37 +247,28 @@
 						<h5 class="card-header ">Contrato</h5>
 						<div class="card-body text-dark">
 							<div class="form-row align-items-center">
-
 								<div class="col-2">
-
 									<label for="fechaContrato">Fecha de contrato</label> <input
 										id="fechaContrato" type="text"
 										class="form-control date todayDate"></input>
-
-
 								</div>
-
 								<div class="col-3">
 									<label for="tipoContrato">Tipo de Contrato</label> <select
 										id="tipoContrato" class="form-control">
-										<option value="plazo idefinido">plazo idefinido</option>
-										<option value="plazo fijo">plazo fijo</option>
-										<option value="eventual">eventual</option>
+										<option value="PLAZO_INDEFINIDO">PLAZO INDEFINIDO</option>
+										<option value="PLAZO_FIJO">PLAZO FIJO</option>
+										<option value="EVENTUAL">EVENTUAL</option>
 									</select>
 								</div>
-
-
 								<div class="col-3">
 									<label for="estado_contrato">Estado de Contrato</label> <select
 										id="estado_contrato" class="form-control">
-										<option value="vigente">vigente</option>
-										<option value="despido justa causa">despido justa
-											causa</option>
-										<option value="despido sin justa causa">despido sin
-											justa causa</option>
-										<option value="acuerdo mutuo">acuerdo mutuo</option>
-										<option value="renuncia">renuncia</option>
-										<option value="muerte">muerte</option>
+										<option value="VIGENTE">VIGENTE</option>
+										<option value="DESPIDO_JUSTA_CAUSA">DESPIDO JUSTA CAUSA</option>
+										<option value="DESPIDO_SIN_JUSTA_CAUSA">DESPIDO SIN JUSTA CAUSA</option>
+										<option value="ACUERDO_MUTUO">ACUERDO MUTUO</option>
+										<option value="RENUNCIA">RENUNCIA</option>
+										<option value="MUERTE">MUERTE</option>
 									</select>
 								</div>
 
@@ -342,8 +282,6 @@
 										class="button btn-primary form-control" value="recontratar"
 										style="border-radius: 16px;">
 								</div>
-
-
 							</div>
 							<br>
 							<div class="form-row align-items-center">
@@ -351,7 +289,7 @@
 									<label for="obCotrato">Objesvaciones</label>
 									<textarea class="form-control" id="obContrato" rows="2"
 										cols="15"
-										placeholder="Alg�n dato adicional que aclare el estado del contrato"></textarea>
+										placeholder="Algún dato adicional que aclare el estado del contrato"></textarea>
 								</div>
 							</div>
 
@@ -366,44 +304,36 @@
 				<div class="col-1"></div>
 				<div class="col-10">
 					<div class="card border-success  mb-3">
-						<h5 class="card-header ">Posici�n</h5>
+						<h5 class="card-header ">Posici&oacute;n</h5>
 						<div class="card-body text-dark">
 							<div class="form-row align-items-center">
-
 								<div class="col-4">
-									<label for="sede">Sede</label> <select id="sede"
-										class="form-control">
-
+									<label for="headquarter">Puesto</label> <select
+										id="headquarter" class="form-control">
+										<option th:each="lst:${headquarters}" th:value="${lst.id}"
+											th:utext="${lst.name}">
 									</select>
 								</div>
-
-
 								<div class="col-4">
-									<label for="puesto">Puesto</label> <select id="puesto"
-										class="form-control">
-
+									<label for="jobtitle">Puesto</label> <select
+										id="jobtitle" class="form-control">
+										<option th:each="lst:${jobtitles}" th:value="${lst.id}"
+											th:utext="${lst.name}">
 									</select>
 								</div>
-
-
 								<div class="col-4">
-									<label for="departamento">Departamento</label> <select
-										id="departamento" class="form-control">
-
+									<label for="department">Departamento</label> <select
+										id="department" class="form-control">
+										<option th:each="lst:${departments}" th:value="${lst.id}"
+											th:utext="${lst.name}">
 									</select>
 								</div>
-
-
 							</div>
 						</div>
-
 					</div>
 				</div>
 				<div class="col-1"></div>
 			</div>
-
-
-
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
@@ -411,64 +341,56 @@
 						<h5 class="card-header ">Pago</h5>
 						<div class="card-body text-dark">
 							<div class="form-row align-items-center">
-
 								<div class="col-2">
 									<label for="formaPago">Forma de pago</label> <select
 										id="formaPago" class="form-control">
-										<option value="semanal">semanal</option>
-										<option value="quincenal">quincenal</option>
-										<option value="mensual">mensual</option>
-										<option value="mensual">diario</option>
+										<option value="SEMANAL">SEMANAL</option>
+										<option value="QUINCENAL">QUINCENAL</option>
+										<option value="MENSUAL">MENSUAL</option>
+										<option value="DIARIO">DIARIO</option>
 									</select>
 								</div>
-
 								<div class="col-3">
 									<label for="medioPago">Medio de pago</label> <select
 										id="medioPago" class="form-control">
-										<option value="transferencia bancaria">tranferencia
-											bancaria</option>
-										<option value="efectivo">efectivo</option>
-										<option value="mensual">deposito bancario</option>
-										<option value="mensual">cheque</option>
-										<option value="mensual">otro medio de pago</option>
+										<option value="TRANSFERENCIA_BANCARIA">TRANSFERENCIA BANCARIA</option>
+										<option value="EFECTIVO">EFECTIVO</option>
+										<option value="DEPOSITO_BANCARIO">DEPOSITO BANCARIO</option>
+										<option value="CHEQUE">CHEQUE</option>
+										<option value="OTRO">OTRO MEDIO DE PAGO</option>
 									</select>
 								</div>
 
 								<div class="col-2">
 									<label for="moneda">Moneda</label> <select id="moneda"
 										class="form-control">
-										<option value="semanal">colon</option>
-										<option value="quincenal">dolar</option>
-										<option value="mensual">euro</option>
-										<option value="mensual">otra moneda</option>
+										<option value="COLON">COLON</option>
+										<option value="DOLAR">DOLAR</option>
+										<option value="EURO">EURO</option>
+										<option value="OTRA">OTRA</option>
 									</select>
 								</div>
 
 								<div class="col-2">
 									<label for="banco">Banco</label> <select id="banco"
 										class="form-control">
-										<option value="semanal">bac credomatic</option>
-										<option value="quincenal">banco nacional</option>
-										<option value="mensual">banco bcr</option>
-										<option value="mensual">banco popular</option>
-										<option value="mensual">otro banco</option>
+										<option value="BAC CREDOMATIC">BAC CREDOMATIC</option>
+										<option value="BANCO NACIONAL">BANCO NACIONAL</option>
+										<option value="BANCO BCR">BANCO BCR</option>
+										<option value="BANCO POPULAR">BANCO POPULAR</option>
+										<option value="OTRO">OTRO BANCO</option>
 									</select>
 								</div>
-
 								<div class="col-3">
 									<label for="iban">IBAN</label> <input id="iban" type="text"
 										class="form-control" />
 								</div>
-
-
 							</div>
 						</div>
-
 					</div>
 				</div>
 				<div class="col-1"></div>
 			</div>
-
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
@@ -480,9 +402,9 @@
 								<div class="col-4">
 									<label for="tipoJornada">Tipo de Jornada</label> <select
 										id="tipoJornada" class="form-control">
-										<option value="diurna">diurna</option>
-										<option value="nocturna">nocturna</option>
-										<option value="mixta">mixta</option>
+										<option value="DIURNA">DIURNA</option>
+										<option value="NOCTURNA">NOCTURNA</option>
+										<option value="MIXTA">MIXTA</option>
 									</select>
 								</div>
 
@@ -565,7 +487,7 @@
 							<div class="form-row align-items-center">
 
 								<div class="col-4">
-									<label for="bonificaciones">monto por bonificacion</label> <input
+									<label for="bonificaciones">monto por bonificaci&oacute;n</label> <input
 										id="bonificaciones" type="number" min="0" class="form-control"
 										value="0" />
 								</div>
@@ -581,12 +503,8 @@
 										id="pagoTransporte" type="number" min="0" class="form-control"
 										value="0" />
 								</div>
-
-
 							</div>
-
 						</div>
-
 					</div>
 				</div>
 				<div class="col-1"></div>
@@ -605,48 +523,38 @@
 									<label for="tipoAporte">Tipo de Aporte</label> <select
 										id="tipoAporte" class="form-control"
 										onchange="tipoAporteSelected();">
-										<option value="#">seleccione tipo</option>
-										<option value="porcentual">porcentual</option>
-										<option value="fijo">monto fijo</option>
-										<option value="exento">excento del aporte</option>
+										<option value="#">SELECCIONE TIPO</option>
+										<option value="PORCENTUAL">PORCENTUAL</option>
+										<option value="MONTO_FIJO">MONTO FIJO</option>
+										<option value="EXCENTO">EXCENTO DE APORTE</option>
 									</select>
 								</div>
-
 								<div class="col-3">
 									<label for="montoAporte">Monto de aporte</label> <input
 										type="number" class="form-control" id="montoAporte"
 										name="montoAporte" step="1" min="0" max="3000000"
 										readonly="readonly" value="0"></input>
 								</div>
-
 								<div class="col-3">
 									<label for="salarioBruto">Salario Bruto</label> <input
 										type="text" class="form-control" id="salarioBruto"
 										name="salarioBruto" step="1" min="0" max="3000000"></input>
 								</div>
-
 								<div class="col-3">
 									<label for="salarioNeto">Salario Neto</label> <input
 										type="text" class="form-control" id="salarioNeto"
 										name="salarioNeto" step="1" min="0" max="3000000"
 										readonly="readonly"></input>
 								</div>
-
 								<div class="col-2 mt-2">
 									<input type="button" id="btnCalcula2"
 										class="button btn-success form-control btn-sm "
 										value="Calcular" style="border-radius: 16px;"
 										onclick="salNeto();">
 								</div>
-
 								<input type="hidden"></input> <input type="hidden"></input>
-
-
 							</div>
-
 						</div>
-
-
 					</div>
 				</div>
 				<div class="col-1"></div>
@@ -660,22 +568,16 @@
 					</div>
 				</div>
 				<div class="col-1"></div>
-
 			</div>
-
 		</form>
 	</div>
 	<br>
-
-
 	<script th:src="@{/js/jquery-3.4.1.slim.min.js}"></script>
 	<script th:src="@{/js/popper.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<!-- datepicker -->
 	<script th:src="@{/dp/bootstrap-datepicker.min.js}"></script>
 	<script th:src="@{/dp/configfile.js}"></script>
-
-
 </body>
 </html>
 
