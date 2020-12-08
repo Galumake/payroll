@@ -16,7 +16,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String id_card;
-	private String firt_name;
+	private String first_name;
 	private String last_name;
 	private String second_surname;
 	private String birth_date;
@@ -36,11 +36,19 @@ public class Employee {
 	private String agreement_type;
 	private String agreement_status;
 	private String agreement_end_date;
-	private String headquarters;
-	private String job_title;
+	@ManyToOne
+	@JoinColumn(name="headquarter_id")
+	private Headquarter headquarter;
+
+
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+    
+    @ManyToOne
+    @JoinColumn(name="jobtitle_id")
+    private Jobtitle jobtitle;
+    
 	private String payment_period;
 	private String payment_method;
 	private String currency;
@@ -81,12 +89,12 @@ public class Employee {
 		this.id_card = id_card;
 	}
 
-	public String getFirt_name() {
-		return firt_name;
+	public String getFirst_name() {
+		return first_name;
 	}
 
-	public void setFirt_name(String firt_name) {
-		this.firt_name = firt_name;
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
 	}
 
 	public String getLast_name() {
@@ -241,20 +249,12 @@ public class Employee {
 		this.agreement_end_date = agreement_end_date;
 	}
 
-	public String getHeadquarters() {
-		return headquarters;
+	public Headquarter getHeadquarter() {
+		return headquarter;
 	}
 
-	public void setHeadquarters(String headquarters) {
-		this.headquarters = headquarters;
-	}
-
-	public String getJob_title() {
-		return job_title;
-	}
-
-	public void setJob_title(String job_title) {
-		this.job_title = job_title;
+	public void setHeadquarter(Headquarter headquarter) {
+		this.headquarter = headquarter;
 	}
 
 	public Department getDepartment() {
@@ -263,6 +263,14 @@ public class Employee {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public Jobtitle getJobtitle() {
+		return jobtitle;
+	}
+
+	public void setJobtitle(Jobtitle jobtitle) {
+		this.jobtitle = jobtitle;
 	}
 
 	public String getPayment_period() {
@@ -419,15 +427,15 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", id_card=" + id_card + ", firt_name=" + firt_name + ", last_name=" + last_name
+		return "Employee [id=" + id + ", id_card=" + id_card + ", first_name=" + first_name + ", last_name=" + last_name
 				+ ", second_surname=" + second_surname + ", birth_date=" + birth_date + ", gender=" + gender
 				+ ", civil_status=" + civil_status + ", nationality=" + nationality + ", age=" + age
 				+ ", educational_formation=" + educational_formation + ", email=" + email + ", cell_phone=" + cell_phone
 				+ ", phone=" + phone + ", job_contact_name=" + job_contact_name + ", job_contact_phone="
 				+ job_contact_phone + ", health_condition=" + health_condition + ", observations=" + observations
 				+ ", agreement_date=" + agreement_date + ", agreement_type=" + agreement_type + ", agreement_status="
-				+ agreement_status + ", agreement_end_date=" + agreement_end_date + ", headquarters=" + headquarters
-				+ ", job_title=" + job_title + ", department=" + department + ", payment_period=" + payment_period
+				+ agreement_status + ", agreement_end_date=" + agreement_end_date + ", headquarter=" + headquarter
+				+ ", department=" + department + ", jobtitle=" + jobtitle + ", payment_period=" + payment_period
 				+ ", payment_method=" + payment_method + ", currency=" + currency + ", bank=" + bank + ", iban=" + iban
 				+ ", working_day=" + working_day + ", working_hours=" + working_hours + ", business_days="
 				+ business_days + ", cost_per_hour=" + cost_per_hour + ", cost_overtime=" + cost_overtime
@@ -440,6 +448,6 @@ public class Employee {
 
 
 	
-		
+
 	
 }

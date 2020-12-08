@@ -1,9 +1,12 @@
 package com.sedesoft.payroll.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,8 @@ public class Headquarter {
 	private Long id;
 	private String name;
 	private String status;
+	@OneToMany(mappedBy = "headquarter")
+	private List<Employee> employees;
 	
 	public Headquarter() {
 		// TODO Auto-generated constructor stub
@@ -43,10 +48,20 @@ public class Headquarter {
 		this.status = status;
 	}
 
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+
 	@Override
 	public String toString() {
-		return "Headquarter [id=" + id + ", name=" + name + ", status=" + status + "]";
+		return "Headquarter [id=" + id + ", name=" + name + ", status=" + status + ", employees=" + employees + "]";
 	}
+
+	
 
 	
 }

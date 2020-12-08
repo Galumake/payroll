@@ -34,7 +34,7 @@
 	</h1>
 	 -->
 	<div class="container-fluid m-4">
-		<form action="#">
+		<form action="#" th:action="@{/employee/insert}" th:model="employee">
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-10">
@@ -96,12 +96,12 @@
 						<div class="card-body text-dark">
 							<div class="form-row align-items-center">
 								<div class="col-2">
-									<label for="cedula">C&eacute;dula</label> <input type="text"
-										class="form-control" id="cedula"></input>
+									<label for="id_card">C&eacute;dula</label> <input type="text"
+										class="form-control" id="id_card" th:field="${employee.id_card}"></input>
 								</div>
 								<div class="col-3 ">
-									<label for="nombre">Nombre</label> <input type="text"
-										class="form-control" id="nombre"></input>
+									<label for="first_name">Nombre</label> <input type="text"
+										class="form-control" id="first_name" th:field="${employee.first_name}" ></input>
 								</div>
 								<div class="col-3 ">
 									<label for="apellido">Apellido</label> <input type="text"

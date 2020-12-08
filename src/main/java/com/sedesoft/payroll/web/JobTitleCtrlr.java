@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sedesoft.payroll.model.JobTitle;
+import com.sedesoft.payroll.model.Jobtitle;
 import com.sedesoft.payroll.repository.JobTitleRepo;
 
 @Controller
@@ -25,12 +25,12 @@ public class JobTitleCtrlr {
 	JobTitleRepo jobTitleRepo;
 
 	@ModelAttribute("jobtitle")
-	public JobTitle jobtitle() {
-		return new JobTitle();
+	public Jobtitle jobtitle() {
+		return new Jobtitle();
 	}
 	
 	@ModelAttribute("records")
-	public List<JobTitle> records (){
+	public List<Jobtitle> records (){
 		return jobTitleRepo.findAll();
 	}
 	
@@ -52,10 +52,10 @@ public class JobTitleCtrlr {
 	}
 
 	@GetMapping("/insert")
-	public String insert(@ModelAttribute("jobtitle") JobTitle jobTitle, BindingResult result, Model model) {
+	public String insert(@ModelAttribute("jobtitle") Jobtitle jobTitle, BindingResult result, Model model) {
 		if(result.hasErrors())
 			return "/employee/job-titles";
-		Optional<JobTitle> op = jobTitleRepo.findAll().stream().filter(x->x.getId().equals(jobTitle.getId())).findFirst();
+		Optional<Jobtitle> op = jobTitleRepo.findAll().stream().filter(x->x.getId().equals(jobTitle.getId())).findFirst();
 		if(op.isPresent())
 			return "redirect:/employee/jobtitle?fail";
 		jobTitleRepo.save(turnToUpperCase(jobTitle));
@@ -63,7 +63,7 @@ public class JobTitleCtrlr {
 	}
 	
 	@GetMapping("/update")
-	public String update(@ModelAttribute("jobtitle") JobTitle JobTitle, BindingResult result, Model model) {
+	public String update(@ModelAttribute("jobtitle") Jobtitle JobTitle, BindingResult result, Model model) {
 		if(result.hasErrors())
 			return "/employee/job-titles";
 		jobTitleRepo.save(turnToUpperCase(JobTitle));
@@ -80,8 +80,8 @@ public class JobTitleCtrlr {
 	/*
 	 * Service
 	 * */
-	private JobTitle turnToUpperCase(@Valid JobTitle JobTitle) {
-		JobTitle delivery = new JobTitle();
+	private Jobtitle turnToUpperCase(@Valid Jobtitle JobTitle) {
+		Jobtitle delivery = new Jobtitle();
 		delivery.setId(JobTitle.getId());
 		delivery.setName(JobTitle.getName().toUpperCase());
 		delivery.setStatus(JobTitle.getStatus());
